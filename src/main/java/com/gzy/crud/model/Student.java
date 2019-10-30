@@ -29,30 +29,13 @@ import javax.persistence.*;
 @Setter
 public class Student {
 
-//    - id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    - sid str
-
     @Column(length = 100)
     private String sid;
-//        - 学号
-//        - 数字 ~~Long~~
-//        - 递增
-//        - 唯一
-//        1. 数据库表是 InnoDB
-//        2. table uniqueConstraints
-//        3. utf8mb4  len <= 191
-//        - 不可变
-//    - name str
     private String name;
-//    - age unsint
     private Integer age;
-//    - gender  int
     private Integer gender;
-//        - __未知__ 0 女 1 男 2
-//    - 20+
-//    - mark str
     private String mark;
 }
