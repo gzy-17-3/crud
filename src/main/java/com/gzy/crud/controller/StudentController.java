@@ -1,7 +1,11 @@
 package com.gzy.crud.controller;
 
+import com.gzy.crud.model.Clazz;
 import com.gzy.crud.model.Student;
+import com.gzy.crud.repository.ClazzRepository;
 import com.gzy.crud.repository.StudentRepository;
+import com.gzy.crud.service.ClazzService;
+import com.gzy.crud.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
@@ -30,16 +34,26 @@ public class StudentController {
     @Resource
     StudentRepository studentRepository;
 
+    @Resource
+    ClazzService clazzService;
+
+
     @PostMapping
     Object create(@Valid @RequestBody StudentPara para) {
 
         // id
-        Student student = new Student();
+        var student = new Student();
 
         BeanUtils.copyProperties(para, student);
 
-        Student s = studentRepository.save(student);
+        var s = studentRepository.save(student);
         s.setSid(s.getId().toString());
+
+
+        Clazz clazz = new Clazz();
+
+        clazzService.create(clazz);
+
         return studentRepository.save(s);
     }
 
